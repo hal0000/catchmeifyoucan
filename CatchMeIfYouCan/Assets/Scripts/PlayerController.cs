@@ -3,9 +3,6 @@
 public class PlayerController : MonoBehaviour
 {
     Transform target;
-    [Header("Specs.")]
-    public float Range = 10f;
-    public float FireRate = 0.0025f;
     private float FireCountDown = 0f;
 
     [Header("Setup Fields")]
@@ -15,7 +12,9 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     public GameObject fireLight;
+    GameManager _gm;
 
+    void Awake() => _gm = GameManager.Instance;
     void Start() => InvokeRepeating("UpdateTarget", 0f, 0.5f);
 
     
@@ -34,7 +33,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (nearestEnemy != null && shortestDistance <= Range)
+        if (nearestEnemy != null && shortestDistance <= _gm.GunRange)
             target = nearestEnemy.transform;
         else
             target = null;
@@ -52,7 +51,7 @@ public class PlayerController : MonoBehaviour
         if (FireCountDown <= 0)
         {
             Shoot();
-            FireCountDown = 1f / FireRate;
+            FireCountDown = 1f / _gm.GunFireRate;
         }
     }
     void Shoot()
@@ -63,11 +62,5 @@ public class PlayerController : MonoBehaviour
             bullet.Seek(target);
         GameObject effect = Instantiate(fireLight, firePoint.position, firePoint.rotation);
         Destroy(effect, 0.05f);
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, Range);
     }
 }

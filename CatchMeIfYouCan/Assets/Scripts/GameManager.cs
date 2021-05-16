@@ -7,11 +7,19 @@ public class GameManager : MonoBehaviour
     static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
     [Header("For Game Designer")]
+    [Tooltip("Player's normal forward speed")]
     public float PlayerNormalSpeed;
+    [Tooltip("Player's slowed forward speed (when hits the obstacle)")]
     public float PlayerSlowedSpeed;
+    [Tooltip("Player's Swerve horizontal speed")]
     public float PlayerHorizontalSpeed;
+    [Tooltip("Gun Fire Rate")]
     public float GunFireRate;
+    [Tooltip("Gun Fire Rate")]
+    public float GunRange;
+    [Tooltip("Enemy forward speed")]
     public float EnemySpeed;
+    [Tooltip("Enemy count per level(multiply this value with player's data level value")]
     public int EnemyCountPerLevel;
 
     [Header("Player's Data")]

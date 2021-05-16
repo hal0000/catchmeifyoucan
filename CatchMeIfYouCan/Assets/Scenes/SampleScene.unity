@@ -1209,7 +1209,8 @@ MonoBehaviour:
   PlayerNormalSpeed: 6
   PlayerSlowedSpeed: 2
   PlayerHorizontalSpeed: 0.5
-  GunFireRate: 2
+  GunFireRate: 0.3
+  GunRange: 5
   EnemySpeed: 6
   EnemyCountPerLevel: 20
   Level: 0
